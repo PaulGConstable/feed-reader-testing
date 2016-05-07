@@ -94,6 +94,9 @@ $(function() {
         beforeEach(function(done){
             loadFeed(0, function() {
                 entry = $('.feed .entry').empty();
+                loadFeed(1, function(){
+                    done();
+                })
             });
             done();
         })
