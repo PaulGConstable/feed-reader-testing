@@ -83,31 +83,25 @@ $(function() {
 
     /* TODO: Write a new test suite named "Initial Entries" */
 
-    describe('Inital Entries', function() {
-        /* TODO: Write a test that ensures when the loadFeed
+    /* TODO: Write a test that ensures when the loadFeed
          * function is called and completes its work, there is at least
          * a single .entry element within the .feed container.
          * Remember, loadFeed() is asynchronous so this test will require
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
-        var entry = $('.feed .entry').html();
+    describe('Initial Entries', function(){
         beforeEach(function(done){
-            loadFeed(0, function() {
-                entry = $('.feed .entry').empty();
-                loadFeed(1, function(){
-                    done();
-                })
-            });
-            done();
-        })
-
-        it('has a single .entry with the .feed container', function(done){
-            expect($('.feed .entry')).not.toBe(entry);
-            done();
+            loadFeed(0, function(){
+                done();
+            })
         });
 
-
+        it ('has a single entry in the feed', function(done){
+            expect($('.feed .entry').length).not.toBe(0);
+            done();
+        })
     });
+
 
     /* TODO: Write a new test suite named "New Feed Selection"
 
@@ -115,4 +109,22 @@ $(function() {
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
+    describe('New Feed Selection', function() {
+        var feed1, feed2;
+
+        beforeEach(function(done){
+            loadFeed (0, function(){
+                feed1 = $('.feed .entry').text();
+                done();
+            });
+        });
+
+        it('content has changed when a new feed loads', function(done){
+            expect(feed1).not.toBe(feed2);
+            loadFeed (1, function(){
+                feed2 = $('.feed .entry').text();
+                done();
+            });
+        });
+    });
 }());
