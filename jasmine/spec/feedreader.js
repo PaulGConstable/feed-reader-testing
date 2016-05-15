@@ -25,6 +25,7 @@ $(function() {
          * and that the URL is not empty.
          */
         it('URLs are defined', function () {
+
             for (var i = 0; i < allFeeds.length; i++) {
                 expect(allFeeds[i].url).toBeDefined();
                 expect(allFeeds[i].url.length).not.toBe(0);
@@ -103,9 +104,8 @@ $(function() {
          * loadFeed function that the content actually changes.
          * Note: loadFeed() is asynchronous.
          */
-        it('content has changed when a new feed loads', function(done){
+        it('content has changed when a new feed loads', function(){
             expect(feed1).not.toBe(feed2);
-            done();
         });
     });
 }());
